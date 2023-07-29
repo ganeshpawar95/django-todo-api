@@ -31,8 +31,8 @@ def login(request):
 
     if user.check_password(password):
         refresh = RefreshToken.for_user(user)
-        access_token = str(refresh.access_token)
-        return Response({'access_token': access_token})
+        return Response({'refresh': str(refresh),
+        'access': str(refresh.access_token)})
     else:
         return Response({'error': 'Invalid username or password'}, status=400)
 
